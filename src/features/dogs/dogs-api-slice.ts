@@ -8,7 +8,9 @@ interface Breed {
   name: string;
   image: {
     url: string;
-  }
+  };
+  bred_for: string;
+  temperament: string;
 }
 
 export const apiSlice = createApi({
