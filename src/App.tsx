@@ -6,8 +6,8 @@ import Loading from './components/Loading';
 import BreedDashboard from './components/BreedDashboard';
 
 function App() {
-  const [numDogs, setNumberDogs] = useState(10);
-  const { data = [], isFetching } = useFetchBreedsQuery(numDogs);
+  const [ page, setPage ] = useState(1);
+  const { data = [], isFetching } = useFetchBreedsQuery(page);
 
   return (
     <div className="App">
@@ -21,7 +21,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       {isFetching && <Loading />}
-      {!isFetching && <BreedDashboard data={data} numDogs={numDogs} setNumberDogs={setNumberDogs} />}
+      {!isFetching && <BreedDashboard data={data} page={page} setPage={setPage} />}
     </div>
   );
 }

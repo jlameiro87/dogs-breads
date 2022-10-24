@@ -1,13 +1,9 @@
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Breed from "./Breed";
 import Container from "@mui/material/Container";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 interface BreedI {
   id?: string;
@@ -15,36 +11,30 @@ interface BreedI {
   image: {
     url: string;
   };
+  bred_for: string;
+  temperament: string;
 }
 
 interface BreedDashboardI {
   data: BreedI[];
-  numDogs: number;
-  setNumberDogs: Function;
+  page: number;
+  setPage: Function;
 }
 
-const BreedDashboard = ({ data, numDogs, setNumberDogs }: BreedDashboardI) => {
+const BreedDashboard = ({ data, page, setPage }: BreedDashboardI) => {
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
   return (
     <Container>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Dogs to fetch</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={numDogs}
-          label="Dogs to fetch"
-          onChange={(e) => setNumberDogs(Number(e.target.value))}
-        >
-          <MenuItem value="5">5</MenuItem>
-          <MenuItem value="10">10</MenuItem>
-          <MenuItem value="15">15</MenuItem>
-          <MenuItem value="20">20</MenuItem>
-        </Select>
-      </FormControl>
+      <Stack spacing={2}>
+        <Pagination count={18} page={page} shape="rounded" onChange={handleChange} />
+      </Stack>
       <List>
         {data.map((breed) => (
           <ListItem key={breed.id}>
-            <Breed name={breed.name} image={breed.image} />
+            <Breed name={breed.name} image={breed.image} bred_for={breed.bred_for} temperament={breed.temperament} />
           </ListItem>
         ))}
       </List>
