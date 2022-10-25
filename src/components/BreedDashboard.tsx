@@ -13,6 +13,8 @@ interface BreedI {
   };
   bred_for: string;
   temperament: string;
+  life_span: string;
+  origin: string;
 }
 
 interface BreedDashboardI {
@@ -34,7 +36,7 @@ const BreedDashboard = ({ data, page, setPage }: BreedDashboardI) => {
       <List>
         {data.map((breed) => (
           <ListItem key={breed.id}>
-            <Breed name={breed.name} image={breed.image} bred_for={breed.bred_for} temperament={breed.temperament} />
+            <Breed name={breed.name} image={breed.image} bred_for={breed.bred_for} temperament={breed.temperament} life_span={breed.life_span} origin={breed.origin} />
           </ListItem>
         ))}
       </List>
