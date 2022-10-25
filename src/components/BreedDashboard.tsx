@@ -4,24 +4,7 @@ import Breed from "./Breed";
 import Container from "@mui/material/Container";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-
-interface BreedI {
-  id?: string;
-  name: string;
-  image: {
-    url: string;
-  };
-  bred_for: string;
-  temperament: string;
-  life_span: string;
-  origin: string;
-}
-
-interface BreedDashboardI {
-  data: BreedI[];
-  page: number;
-  setPage: Function;
-}
+import { BreedDashboardI } from "../utils/constants";
 
 const BreedDashboard = ({ data, page, setPage }: BreedDashboardI) => {
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {

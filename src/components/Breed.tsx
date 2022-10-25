@@ -4,18 +4,8 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import BreedDialog from "./BreedDialog";
 import { useState } from "react";
-
-interface BreedI {
-  id?: string;
-  name: string;
-  image: {
-    url: string;
-  };
-  bred_for: string;
-  temperament: string;
-  life_span: string;
-  origin: string;
-}
+import { BreedI } from "../utils/constants";
+import Tooltip from "@mui/material/Tooltip";
 
 const Breed = ({ name, image, bred_for, temperament, life_span, origin }: BreedI) => {
   const [open, setOpen] = useState(false);
@@ -28,9 +18,11 @@ const Breed = ({ name, image, bred_for, temperament, life_span, origin }: BreedI
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia component="img" height="250" width="250" image={image.url} alt={name} />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div" sx={{cursor: "pointer"}} onClick={() => setOpen(true)}>
-          {name}
-        </Typography>
+        <Tooltip title="Details">
+          <Typography gutterBottom variant="h5" component="div" sx={{cursor: "pointer"}} onClick={() => setOpen(true)}>
+            {name}
+          </Typography>
+        </Tooltip>
       </CardContent>
       <BreedDialog open={open} handleClose={handleClose} name={name} image={image} bred_for={bred_for} temperament={temperament} life_span={life_span} origin={origin} />
     </Card>
