@@ -12,6 +12,7 @@ interface Breed {
   bred_for: string;
   temperament: string;
   life_span: string;
+  origin: string;
 }
 
 export const apiSlice = createApi({
